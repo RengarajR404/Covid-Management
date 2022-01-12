@@ -63,7 +63,7 @@ double Dijkstra(int src,int des = -1)
 
     for(int i = 0; i < NoN; i++)
     {
-        int m=minimumDist(DistFromSrc, IsVisited);
+        int m = minimumDist(DistFromSrc, IsVisited);
         IsVisited[m]=true;
         for(int j = 0; j < NoN; j++)
         {
@@ -151,5 +151,5 @@ int main() {
 
 
 
-
+    return 0;
 }
