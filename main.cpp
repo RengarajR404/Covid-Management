@@ -35,7 +35,7 @@ const int Gem=7;
 const int Cmc=12;
 const int Psg=5;
 const int Gh=8;
-
+vector<pair<char*, double> > A;
 
 void addEdge(int src,int des,double weight)
 {
@@ -91,6 +91,38 @@ double Dijkstra(int src,int des = -1)
         return 0.0;
     }
 }
+
+
+
+
+
+
+
+bool cmp(pair<char*, double>& a,
+         pair<char*, double>& b)
+{
+    return a.second < b.second;
+}
+
+
+void sort(map<char*, double>& M)
+{
+
+
+
+
+
+    for (auto& it : M) {
+        A.push_back(it);
+    }
+
+
+    sort(A.begin(), A.end(), cmp);
+
+
+
+
+}
 //---------------------------------------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -142,7 +174,7 @@ int main() {
     int CodeSrc=NameToCode[src];
 
     Dijkstra(CodeSrc);
-    //vector<map<char*,double>> hospitaldistance(4);
+
     map<char*,double> hospitalsrc;
 
     hospitalsrc.insert(pair<char*,double>("CMC", Dijkstra(Kmch,Cmc)));
@@ -154,7 +186,7 @@ int main() {
     for(it = hospitalsrc.begin(); it != hospitalsrc.end();++it)
         cout <<it ->second << endl;
 
-    queue<Patient> gem_hospital,kmch_hospital,gh_hospital,psg_hospital;
+    queue<Patient> gem_hospital,kmch_hospital,gh_hospital,psg_hospital,cmc_hospital;
     Patient p[20];
     Covid h[10];
 
