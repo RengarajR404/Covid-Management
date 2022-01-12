@@ -1,0 +1,3 @@
+C:/Users/ADMIN/CLionProjects/Covid-Management/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/ADMIN/CLionProjects/Covid-Management/cmake-build-debug/CMakeFiles/Covid_Management.dir
+C:/Users/ADMIN/CLionProjects/Covid-Management/cmake-build-debug/CMakeFiles/rebuild_cache.dir

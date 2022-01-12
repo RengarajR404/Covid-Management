@@ -10,20 +10,84 @@
 using namespace std;
 class Covid {
 private:
-    bool status;
+    bool status = true;
     int severity;
-    string symptoms[3];
+    double symptom_score[3];
+    double symptom_avg =0.0;
+    string symptoms[3]={"Fever","Breathing","Cold"};
+
+
 public:
     Covid()
     {
         this->status = false;
         this ->severity =0;
     }
-    Covid(bool status, int severity){
+
+    Covid(bool status, double a[]){
         this->status=status;
-        this->severity= severity;
+        for(auto i=0 ;i<3;i++)
+        {
+            symptom_score[i]=a[i]  ;
+        }
     }
 
+    bool isStatus() const {
+        return status;
+    }
+
+    void setStatus(bool status) {
+        Covid::status = status;
+    }
+
+    int getSeverity() {
+        return severity;
+    }
+
+    void setSeverity(int severity) {
+        Covid::severity = severity;
+    }
+
+    double getSymptomScore()  {
+        return *symptom_score;
+    }
+
+    void setsymp(double a[])
+    {
+        for(int i=0 ;i<3;i++)
+        {
+            symptom_score[i]=a[i];
+        }
+    }
+    string getSymptoms() {
+        return *symptoms;
+    }
+
+    void calcavg()
+    {
+        for( auto i=0; i<3; i++  )
+        {
+            symptom_avg=symptom_avg+symptom_score[i];
+        }
+        symptom_avg=(symptom_avg)/3;
+
+    }
+    double getSymptomavg()
+    {
+        return this ->symptom_avg;
+    }
+
+    void findSeverity(){
+        if (this->symptom_avg < 5) {
+            setSeverity(0);
+        } else {
+            if (symptom_avg >= 5 || symptom_avg < 10) {
+                setSeverity(1);
+            } else if (symptom_avg >= 10) {
+                setSeverity(2);
+            }
+        }
+    }
 
 };
 
