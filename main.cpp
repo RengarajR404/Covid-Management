@@ -210,8 +210,9 @@ int main() {
         h[i].findSeverity();
     }
 
-    for(int i = 0 ; i < 20; i++)
-        p[i].setPname(pname[i]);
+    for(int i = 0 ; i < 20; i++) {
+        p[i]=Patient(pname[i],h[i]);
+    }
     for(int i = 0; i < 20; i++)
     {
         if(i < 5)
@@ -259,6 +260,7 @@ int main() {
     cout<<"\n"<<score[0][0]<<endl;
     cout<<"\n"<<h[1].getSymptomavg();
     cout<<"\n"<<h[1].getSeverity();
+    cout<<"\n"<<p[1].getPname()<<p[1].getcovid().getSymptomavg();
 
 
 

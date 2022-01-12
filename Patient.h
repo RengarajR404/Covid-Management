@@ -34,6 +34,10 @@ public:
         Patient::pname = pname;
     }
 
+    Covid getcovid()
+    {
+        return this -> covid;
+    }
 
 
 };
