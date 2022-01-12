@@ -21,16 +21,27 @@
 #include <cstring>
 #include <stdlib.h>
 #include <assert.h>
-
+#include "Patient.h"
+#include "Covid.h"
+#include<bits/stdc++.h>
 
 using namespace std;
-static const int NoN=6;
-int graph[NoN][NoN];
+map<int,char*> CodeToName;
+map<char*,int> NameToCode;
+static const int NoN=23;
+double graph[NoN][NoN];
+const int Kmch=14;
+const int Gem=7;
+const int Cmc=12;
+const int Psg=5;
+const int Gh=8;
+
 
 void addEdge(int src,int des,double weight)
 {
     graph[src][des]=weight;
     graph[des][src]=weight;
+
 }
 
 int minimumDist(const double dist[], const bool IsVisited[])
