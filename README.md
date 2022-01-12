@@ -1,2 +1,2 @@
 # Covid-Management
-dei mandaya :)
+
