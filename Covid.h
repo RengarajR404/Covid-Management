@@ -8,7 +8,6 @@
 #include<math.h>
 #include<string>
 using namespace std;
-
 class Covid {
 private:
     bool status;
