@@ -156,6 +156,7 @@ int main() {
 
     queue<Patient> gem_hospital,kmch_hospital,gh_hospital,psg_hospital;
     Patient p[20];
+    Covid h[10];
 
 
 
