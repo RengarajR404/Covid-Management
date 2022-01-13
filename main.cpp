@@ -177,81 +177,87 @@ int main() {
 
     Dijkstra(CodeSrc);
 
-    map<char*,double> hospitalsrc;
+    map<char *, double> hospitalsrc;
 
-    hospitalsrc.insert(pair<char*,double>("CMC", Dijkstra(Kmch,Cmc)));
-    hospitalsrc.insert(pair<char*,double>("GEM", Dijkstra(Kmch,Gem)));
-    hospitalsrc.insert(pair<char*,double>("GH", Dijkstra(Kmch,Gh)));
-    hospitalsrc.insert(pair<char*,double>("PSG", Dijkstra(Kmch,Psg)));
+    hospitalsrc.insert(pair<char *, double>("CMC", Dijkstra(Kmch, Cmc)));
+    hospitalsrc.insert(pair<char *, double>("GEM", Dijkstra(Kmch, Gem)));
+    hospitalsrc.insert(pair<char *, double>("GH", Dijkstra(Kmch, Gh)));
+    hospitalsrc.insert(pair<char *, double>("PSG", Dijkstra(Kmch, Psg)));
 
-    cout<<endl;
+    cout << endl;
     sort(hospitalsrc);
-    for(auto& i : A)
-    {
+    for (auto &i: A) {
         cout << i.first << " " << i.second << endl;
     }
 
-    queue<Patient> gem_hospital,kmch_hospital,gh_hospital,psg_hospital,cmc_hospital;
+    queue<Patient> gem_hospital, kmch_hospital, gh_hospital, psg_hospital, cmc_hospital;
     Patient p[20];
     Covid h[20];
-    char pname[20][30]={"Juras","Lakshmi Ramesh", "Sahesh Mai","Saran","Amirab","Hairsh",
-                      "Akhilesh","Janom","Nohan Sair","Pairam Sandu","Chintu",
-                      "Jengarar","Tharash","lithim","Neghamarshan","avoorpa",
-                      "Murthick","Selvan Thiru", "Metanya Chiglani", "Dutkarsh Ved"};
+    char pname[20][30] = {"Juras", "Lakshmi Ramesh", "Sahesh Mai", "Saran", "Amirab", "Hairsh",
+                          "Akhilesh", "Janom", "Nohan Sair", "Pairam Sandu", "Chintu",
+                          "Jengarar", "Tharash", "lithim", "Neghamarshan", "avoorpa",
+                          "Murthick", "Selvan Thiru", "Metanya Chiglani", "Dutkarsh Ved"};
 
-    double score[20][3]={{9.5,8.12,9.1}, {9.5,9.6,9.8},{8.3,2.5,4.8},{7,4.2,8.4},{9.6,8.2,4.7},
-            {0.7,7.3,9.1},{9.87,8.9,2.1},{0.0,2.230,2.0},{15.0,6.5,11.0},{2.0,9.0,1.0},
-            {9.0,3.0,7.0},{7.0,7.0,8.0},{9.50,10.0,13.40},{9.5,12.7,10.2},{7.3,0.5,3.5},{1.003,2.002,3.54},
-            {12.5,10.5,13.3},{1.019,2.451,13.8},{1.9,2.7,3.47},{1.4,2.1,3.9}};
+    double score[20][3] = {{9.5,   8.12,  9.1},
+                           {9.5,   9.6,   9.8},
+                           {8.3,   2.5,   4.8},
+                           {7,     4.2,   8.4},
+                           {9.6,   8.2,   4.7},
+                           {0.7,   7.3,   9.1},
+                           {9.87,  8.9,   2.1},
+                           {0.0,   2.230, 2.0},
+                           {15.0,  6.5,   11.0},
+                           {2.0,   9.0,   1.0},
+                           {9.0,   3.0,   7.0},
+                           {7.0,   7.0,   8.0},
+                           {9.50,  10.0,  13.40},
+                           {9.5,   12.7,  10.2},
+                           {7.3,   0.5,   3.5},
+                           {1.003, 2.002, 3.54},
+                           {12.5,  10.5,  13.3},
+                           {1.019, 2.451, 13.8},
+                           {1.9,   2.7,   3.47},
+                           {1.4,   2.1,   3.9}};
 
-    for(int i=0;i<20;i++)
-    {
+    for (int i = 0; i < 20; i++) {
         h[i].setsymp(score[i]);
         h[i].calcavg();
         h[i].findSeverity();
     }
 
-    for(int i = 0 ; i < 20; i++) {
-        p[i]=Patient(pname[i],h[i]);
+    for (int i = 0; i < 20; i++) {
+        p[i] = Patient(pname[i], h[i]);
     }
-    for(int i = 0; i < 20; i++)
-    {
-        if(i < 5)
+    for (int i = 0; i < 20; i++) {
+        if (i < 5)
             kmch_hospital.push(p[i]);
-        else
-        {
-            if(i >= 5 && i <= 9)
-            {
-                if(A.at(1).first == "CMC")
+        else {
+            if (i >= 5 && i <= 9) {
+                if (A.at(1).first == "CMC")
                     cmc_hospital.push(p[i]);
-                else if(A.at(1).first == "GEM")
+                else if (A.at(1).first == "GEM")
                     gem_hospital.push(p[i]);
-                else if(A.at(1).first == "GH")
+                else if (A.at(1).first == "GH")
                     gh_hospital.push(p[i]);
-                else if(A.at(1).first == "PSG")
+                else if (A.at(1).first == "PSG")
                     psg_hospital.push(p[i]);
-            }
-
-            else if(i >= 10 && i <= 14)
-            {
-                if(A.at(2).first == "CMC")
+            } else if (i >= 10 && i <= 14) {
+                if (A.at(2).first == "CMC")
                     cmc_hospital.push(p[i]);
-                else if(A.at(2).first == "GEM")
+                else if (A.at(2).first == "GEM")
                     gem_hospital.push(p[i]);
-                else if(A.at(2).first == "GH")
+                else if (A.at(2).first == "GH")
                     gh_hospital.push(p[i]);
-                else if(A.at(2).first == "PSG")
+                else if (A.at(2).first == "PSG")
                     psg_hospital.push(p[i]);
-            }
-            else
-            {
-                if(A.at(3).first == "CMC")
+            } else {
+                if (A.at(3).first == "CMC")
                     cmc_hospital.push(p[i]);
-                else if(A.at(3).first == "GEM")
+                else if (A.at(3).first == "GEM")
                     gem_hospital.push(p[i]);
-                else if(A.at(3).first == "GH")
+                else if (A.at(3).first == "GH")
                     gh_hospital.push(p[i]);
-                else if(A.at(3).first == "PSG")
+                else if (A.at(3).first == "PSG")
                     psg_hospital.push(p[i]);
             }
         }
