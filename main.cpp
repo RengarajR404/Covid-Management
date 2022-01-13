@@ -129,50 +129,51 @@ void sort(map<char*, double>& M)
 //---------------------------------------------------------------------------------------------------------------------
 int main() {
     char src[30];
-    //Initialting Map done
-    addEdge(0,18,2.5);
-    addEdge(0,19,4.0);
-    addEdge(0,16,6.6);
-    addEdge(0,1,1.6);
-    addEdge(16,1,6.8);
-    addEdge(1,2,2.8);
-    addEdge(2,3,0.65);
-    addEdge(3,7,2.1);
-    addEdge(3,4,2.9);
-    addEdge(4,5,0.3);
-    addEdge(4,6,2.9);
-    addEdge(6,12,0.75);
-    addEdge(12,13,2.5);
-    addEdge(13,14,1.2);
-    addEdge(13,15,3.1);
-    addEdge(7,8,3.3);
-    addEdge(8,9,1.3);
-    addEdge(9,10,3.6);
-    addEdge(10,7,1.4);
-    addEdge(7,11,2.2);
-    addEdge(11,10,2.3);
-    addEdge(9,20,2.3);
-    addEdge(20,18,3.5);
-    addEdge(20,21,4.4);
-    addEdge(21,22,5.3);
-    addEdge(18,19,2.8);
-    addEdge(19,17,4.3);
-    cout<<"Initialting Map";
+    //Initialising Map done
+    addEdge(0, 18, 2.5);
+    addEdge(0, 19, 4.0);
+    addEdge(0, 16, 6.6);
+    addEdge(0, 1, 1.6);
+    addEdge(16, 1, 6.8);
+    addEdge(1, 2, 2.8);
+    addEdge(2, 3, 0.65);
+    addEdge(3, 7, 2.1);
+    addEdge(3, 4, 2.9);
+    addEdge(4, 5, 0.3);
+    addEdge(4, 6, 2.9);
+    addEdge(6, 12, 0.75);
+    addEdge(12, 13, 2.5);
+    addEdge(13, 14, 1.2);
+    addEdge(13, 15, 3.1);
+    addEdge(7, 8, 3.3);
+    addEdge(8, 9, 1.3);
+    addEdge(9, 10, 3.6);
+    addEdge(10, 7, 1.4);
+    addEdge(7, 11, 2.2);
+    addEdge(11, 10, 2.3);
+    addEdge(9, 20, 2.3);
+    addEdge(20, 18, 3.5);
+    addEdge(20, 21, 4.4);
+    addEdge(21, 22, 5.3);
+    addEdge(18, 19, 2.8);
+    addEdge(19, 17, 4.3);
+    cout << "Initialting Map";
     //
-    char Locations[23][30] = {"Gandhipuram", "VOC Park","Lakshmi mills", "Kidney Centre", "PSG Tech", "PSG Hospital",
-                            "Hopes College", "Gem Hospital", "GH", "Railway Station", "Olympus", "Central Studio",
-                            "CMC", "Sitra", "KMCH", "Nehru Nagar", "Uppilipalayam", "Cheran Nagar", "RS Puram",
-                            "Saibaba Colony", "Ukkadam", "Kuniamuthur", "Kovaipudur"};
+    char Locations[23][30] = {"Gandhipuram", "VOC Park", "Lakshmi mills", "Kidney Centre", "PSG Tech", "PSG Hospital",
+                              "Hopes College", "Gem Hospital", "GH", "Railway Station", "Olympus", "Central Studio",
+                              "CMC", "Sitra", "KMCH", "Nehru Nagar", "Uppilipalayam", "Cheran Nagar", "RS Puram",
+                              "Saibaba Colony", "Ukkadam", "Kuniamuthur", "Kovaipudur"};
     for (int i = 0; i < 23; i++) {
-        CodeToName.insert({i, Locations[i]});
+        CodeToName.insert(pair<int, char *>(i, Locations[i]));
     }
-    for(int i = 0; i < 23;i++) {
-        NameToCode.insert({Locations[i], i});
+    for (int i = 0; i < 23; i++) {
+        NameToCode.insert(pair<char *, int>(Locations[i], i));
     }
-    cout<<"Enter source:"<<endl;
-    cin>>src;
-    cout<<src;
-    int CodeSrc=NameToCode[src];
+
+    cout << "Enter source:" << endl;
+    cin >> src;
+    cout << src;
+    int CodeSrc = NameToCode[src];
 
     Dijkstra(CodeSrc);
 
