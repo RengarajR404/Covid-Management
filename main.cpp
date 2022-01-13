@@ -26,8 +26,7 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-map<int,char*> CodeToName;
-map<char*,int> NameToCode;
+
 static const int NoN=23;
 double graph[NoN][NoN];
 const int Kmch=14;
@@ -44,10 +43,8 @@ void addEdge(int src,int des,double weight)
 
 }
 
-int minimumDist(const double dist[], const bool IsVisited[])
-{
-    int min=INT_MAX,index;
-
+int minKeyVal(const double dist[], const bool IsVisited[])
+{int min=INT_MAX,index;
     for(int i=0; i < NoN; i++)
     {
         if(!IsVisited[i] && dist[i] <= min)
@@ -75,7 +72,7 @@ double Dijkstra(int src,int des = -1)
 
     for(int i = 0; i < NoN; i++)
     {
-        int m = minimumDist(DistFromSrc, IsVisited);
+        int m = minKeyVal(DistFromSrc, IsVisited);
         IsVisited[m]=true;
         for(int j = 0; j < NoN; j++)
         {
@@ -84,7 +81,6 @@ double Dijkstra(int src,int des = -1)
                 DistFromSrc[j]= DistFromSrc[m] + graph[m][j];
         }
     }
-
     if(des!=-1) {
         return DistFromSrc[des];
     }
@@ -128,6 +124,8 @@ void sort(map<char*, double>& M)
 
 //---------------------------------------------------------------------------------------------------------------------
 int main() {
+    map<int, char *> CodeToName;
+    map<char *, int> NameToCode;
     char src[30];
     //Initialising Map done
     addEdge(0, 18, 2.5);
@@ -263,17 +261,51 @@ int main() {
         }
     }
 
+    cout << "\n" << score[0][0] << endl;
+    cout << "\n" << h[1].getSymptomavg();
+    cout << "\n" << h[1].getSeverity();
+    cout << "\n" << p[1].getPname() << p[1].getcovid().getSymptomavg();
 
-    cout<<"\n"<<score[0][0]<<endl;
-    cout<<"\n"<<h[1].getSymptomavg();
-    cout<<"\n"<<h[1].getSeverity();
-    cout<<"\n"<<p[1].getPname()<<p[1].getcovid().getSymptomavg();
+    char covidLocations[5][30] = {"Ukkadam", "Gem Hospital", "Hopes College", "Cheran Nagar", "VOC Park"};
+    fflush(stdin);
+    cout << "\n\nEnter a location in Coimbatore";
+    char testLocation[30];
+    gets(testLocation);
+    map<char*,int>::iterator it;
+    int testIndex;
+    vector<int> covidIndices;
+    for(it = NameToCode.begin();it != NameToCode.end();++it)
+    {
+        if(!strcmpi(it->first,testLocation))
+            testIndex = it -> second;
+        else if(!strcmp(it -> first,"Ukkadam"))
+            covidIndices.push_back(it->second);
+        else if(!strcmp(it->first,"Gem Hospital"))
+            covidIndices.push_back(it -> second);
+        else if(!strcmp(it -> first,"Hopes College"))
+            covidIndices.push_back(it -> second);
+        else if(!strcmp(it -> first,"Cheran Nagar"))
+            covidIndices.push_back(it -> second);
+        else if(!strcmp(it -> first,"VOC Park"))
+            covidIndices.push_back(it -> second);
+
+    }
+
+    const double redzone = 5.0;
+    int count = 0;
+    for(int i = 0; i < covidIndices.size();i++) {
+        if (Dijkstra(testIndex, covidIndices.at(i)) < redzone)
+            count++;
+
+    }
+
+
+    if(count > 0)
+        cout << "\nCOVID RISK AREA";
+    else
+        cout << "\nSAFE AREA";
 
 
 
-
-
-
-
-    return 0;
+  return 0;
 }
